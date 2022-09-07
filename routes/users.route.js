@@ -1,5 +1,5 @@
 const express = require("express");
-const { registeredUsers,signinUsers, dashboard,testing, fund,transfer, history, transferhistory, wallet,getwallet} = require("../controllers/users.controllers");
+const { registeredUsers,signinUsers, dashboard,testing, fund,transfer, history, transferhistory, wallet,getwallet,fundwallet} = require("../controllers/users.controllers");
 const router= express.Router();
 
 router.post("/signup",registeredUsers);

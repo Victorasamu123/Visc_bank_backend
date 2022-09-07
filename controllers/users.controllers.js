@@ -160,6 +160,30 @@ const getwallet =(req,res)=>{
         }
     })
 }
+const fundwallet=(req,res)=>{
+    console.log(req.body)
+    userModel.findOne({_id:req.body.userIdentification},(err,result)=>{
+        if(err){
+            console.log(err)
+            res.send({message:"wallet funding failed",status:false})
+        }else{
+        let user=result
+        console.log(user);
+        user.initialbalance=Number(user.initialbalance)-Number(req.body.amounttofound)
+        console.log(user.initialbalance);
+        userModel.findByIdAndUpdate({ _id: req.body.userIdentification }, user, (err, result) => {
+            if (err) {
+                console.log(err)
+                console.log("unable to save")
+            } else {
+                console.log("saved")
+                console.log(result.initialbalance)
+                res.send({message:"wallet funding was successful",status:true});
+            }
+        })
+        }
+    })
+}
 const testing = (req, res) => {
     res.send({
         you: [
@@ -176,4 +200,4 @@ const testing = (req, res) => {
     })
 }
 
-module.exports = { registeredUsers, signinUsers, dashboard, testing, fund, transfer,history,transferhistory,wallet,getwallet};
+module.exports = { registeredUsers, signinUsers, dashboard, testing, fund, transfer,history,transferhistory,wallet,getwallet,fundwallet};
