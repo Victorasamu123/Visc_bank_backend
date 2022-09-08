@@ -184,6 +184,15 @@ const fundwallet=(req,res)=>{
         }
     })
 }
+const deletewallet=(req,res)=>{
+    walletModel.deleteOne({userIdentification:req.body.userIdentification},(err,result)=>{
+        if(err){
+            console.log(err)
+        }else{
+            console.log(result)
+        }
+    })
+}
 const testing = (req, res) => {
     res.send({
         you: [
@@ -200,4 +209,4 @@ const testing = (req, res) => {
     })
 }
 
-module.exports = { registeredUsers, signinUsers, dashboard, testing, fund, transfer,history,transferhistory,wallet,getwallet,fundwallet};
+module.exports = { registeredUsers, signinUsers, dashboard, testing, fund, transfer,history,transferhistory,wallet,getwallet,fundwallet,deletewallet};
