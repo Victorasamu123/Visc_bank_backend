@@ -188,6 +188,7 @@ const deletewallet=(req,res)=>{
     walletModel.deleteOne({userIdentification:req.body.userIdentification},(err,result)=>{
         if(err){
             console.log(err)
+            res.send({message:"an error occured"})
         }else{
             console.log(result)
         }
