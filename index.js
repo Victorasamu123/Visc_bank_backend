@@ -2,10 +2,10 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const mongoose = require("mongoose");
+require("dotenv").config();
 app.use(cors())
 app.use(express.urlencoded({extended:true}));
 app.use(express.json())
-require("dotenv").config();
 const URI =process.env.URI
 mongoose.connect(URI,(err)=>{
     if (err) {
